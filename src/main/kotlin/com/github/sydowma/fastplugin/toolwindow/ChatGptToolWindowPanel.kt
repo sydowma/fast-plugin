@@ -55,7 +55,7 @@ class ChatGptToolWindowPanel(private val project: Project) : JPanel() {
         textArea.append(response + "\n")
     }
 
-    private fun sendMessage(message: String) {
+    fun sendMessage(message: String) {
         val settings = SettingsState.instance
         val apiKey = settings.apiKey
 
