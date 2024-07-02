@@ -1,4 +1,4 @@
-package com.github.sydowma.fastplugin.toolWindow
+package com.github.sydowma.fastplugin.toolwindow
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.thisLogger

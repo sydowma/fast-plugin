@@ -9,10 +9,34 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.sydowma.fastplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow factoryClass="com.github.sydowma.fastplugin.toolwindow.MyToolWindowFactory" id="MyToolWindow"/>
     </extensions>
 
     <applicationListeners>
         <listener class="com.github.sydowma.fastplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
+
+
+    <actions>
+        <action id="com.github.sydowma.fastplugin.actions.QuickPromptAction"
+                class="com.github.sydowma.fastplugin.actions.QuickPromptAction"
+                text="Quick Prompt">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+
+    <applicationConfigurable instance="com.github.sydowma.fastplugin.settings.SettingsConfigurable"
+                             id="com.github.sydowma.fastplugin.settings"
+                             displayName="Quick Prompt Settings"
+                             groupId="tools"/>
+
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="ChatGPT"
+                    anchor="right"
+                    factoryClass="com.github.sydowma.fastplugin.toolwindow.ChatGptToolWindow"/>
+    </extensions>
+
+
+
 </idea-plugin>
