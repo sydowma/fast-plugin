@@ -9,7 +9,9 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.sydowma.fastplugin.toolwindow.MyToolWindowFactory" id="MyToolWindow"/>
+
+        <!-- Register the settings service -->
+        <state instance="com.github.sydowma.fastplugin.settings.SettingsState" name="com.github.sydowma.fastplugin.settings.SettingsState" storages="QuickPromptSettings.xml"/>
 
         <projectConfigurable instance="com.github.sydowma.fastplugin.settings.SettingsConfigurable"
                              id="com.github.sydowma.fastplugin.settings"

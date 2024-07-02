@@ -1,20 +1,22 @@
 package com.github.sydowma.fastplugin.settings
 
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
-import com.intellij.openapi.components.ServiceManager
+import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 
 @State(name = "com.github.sydowma.fastplugin.settings.SettingsState", storages = [Storage("QuickPromptSettings.xml")])
-class SettingsState : PersistentStateComponent<SettingsState?> {
+@Service
+class SettingsState : PersistentStateComponent<SettingsState> {
     @JvmField
-    var apiKey: String = ""
+    var apiKey: String? = ""
     @JvmField
-    var prompt: String = ""
+    var prompt: String? = ""
     @JvmField
-    var defaultPrompt: String = ""
+    var defaultPrompt: String? = ""
 
-    override fun getState(): SettingsState? {
+    override fun getState(): SettingsState {
         return this
     }
 
@@ -27,8 +29,7 @@ class SettingsState : PersistentStateComponent<SettingsState?> {
     companion object {
         @JvmStatic
         val instance: SettingsState
-            get() = ServiceManager.getService(
-                SettingsState::class.java
-            )
+            get() = ApplicationManager.getApplication().getService(SettingsState::class.java)
     }
+
 }

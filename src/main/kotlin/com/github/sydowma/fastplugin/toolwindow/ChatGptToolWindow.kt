@@ -7,7 +7,7 @@ import com.intellij.openapi.wm.ToolWindowFactory
 
 class ChatGptToolWindow : ToolWindowFactory, DumbAware {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val panel = ChatGptToolWindowPanel()
+        val panel = ChatGptToolWindowPanel(project)
         toolWindow.contentManager.addContent(
             toolWindow.contentManager.factory.createContent(
                 panel.mainPanel,
