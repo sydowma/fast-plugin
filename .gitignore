@@ -4,3 +4,6 @@
 build
 
 .kotlin/
+
+
+**/*.DS_Store

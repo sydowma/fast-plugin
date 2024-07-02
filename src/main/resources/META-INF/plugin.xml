@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.sydowma.fastplugin</id>
-    <name>fast-plugin</name>
+    <name>Fast-Development</name>
     <vendor>sydowma</vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -10,22 +10,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="com.github.sydowma.fastplugin.toolwindow.MyToolWindowFactory" id="MyToolWindow"/>
-    </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.sydowma.fastplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
-
-
-    <actions>
-        <action id="com.github.sydowma.fastplugin.actions.QuickPromptAction"
-                class="com.github.sydowma.fastplugin.actions.QuickPromptAction"
-                text="Quick Prompt">
-            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-        </action>
-    </actions>
-
-    <extensions defaultExtensionNs="com.intellij">
         <projectConfigurable instance="com.github.sydowma.fastplugin.settings.SettingsConfigurable"
                              id="com.github.sydowma.fastplugin.settings"
                              displayName="Quick Prompt Settings"
@@ -35,7 +20,13 @@
                     factoryClass="com.github.sydowma.fastplugin.toolwindow.ChatGptToolWindow"/>
     </extensions>
 
-
+    <actions>
+        <action id="com.github.sydowma.fastplugin.actions.QuickPromptAction"
+                class="com.github.sydowma.fastplugin.actions.QuickPromptAction"
+                text="Quick Prompt">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
 
 
 </idea-plugin>
