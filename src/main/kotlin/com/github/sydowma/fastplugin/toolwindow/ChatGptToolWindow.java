@@ -6,6 +6,9 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class ChatGptToolWindow implements ToolWindowFactory, DumbAware {
 
     @Override
@@ -13,5 +16,5 @@ public class ChatGptToolWindow implements ToolWindowFactory, DumbAware {
         ChatGptToolWindowPanel panel = new ChatGptToolWindowPanel();
         toolWindow.getContentManager().addContent(toolWindow.getContentManager().getFactory().createContent(panel.getMainPanel(), "", false));
     }
-}
 
+}

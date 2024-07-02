@@ -25,17 +25,16 @@
         </action>
     </actions>
 
-    <applicationConfigurable instance="com.github.sydowma.fastplugin.settings.SettingsConfigurable"
+    <extensions defaultExtensionNs="com.intellij">
+        <projectConfigurable instance="com.github.sydowma.fastplugin.settings.SettingsConfigurable"
                              id="com.github.sydowma.fastplugin.settings"
                              displayName="Quick Prompt Settings"
                              groupId="tools"/>
-
-
-    <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="ChatGPT"
                     anchor="right"
                     factoryClass="com.github.sydowma.fastplugin.toolwindow.ChatGptToolWindow"/>
     </extensions>
+
 
 
 

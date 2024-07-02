@@ -1,6 +1,7 @@
 package com.github.sydowma.fastplugin.actions;
 
 import com.github.sydowma.fastplugin.services.OpenAIService;
+import com.github.sydowma.fastplugin.settings.SettingsState;
 import com.github.sydowma.fastplugin.toolwindow.ChatGptToolWindowPanel;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -20,10 +21,11 @@ public class QuickPromptAction extends AnAction {
         if (project == null) return;
 
         String filePath = e.getDataContext().getData(com.intellij.openapi.actionSystem.CommonDataKeys.VIRTUAL_FILE).getPath();
-        String prompt = "Analyze the following file: " + filePath;
+        SettingsState settings = SettingsState.getInstance();
+        String prompt = settings.prompt.replace("{filePath}", filePath);
 
         // Retrieve OpenAI API key from settings
-        String apiKey = ""; // 从设置中获取
+        String apiKey = settings.apiKey;
 
         OpenAIService openAIService = new OpenAIService(apiKey);
         try {
@@ -33,8 +35,8 @@ public class QuickPromptAction extends AnAction {
             ToolWindow toolWindow = ToolWindowManager.getInstance(project).getToolWindow("ChatGPT");
             if (toolWindow != null) {
                 Content content = toolWindow.getContentManager().getContent(0);
-                if (content != null && content.getComponent() instanceof JPanel panel) {
-                    if (panel.getComponent(0) instanceof ChatGptToolWindowPanel chatGptToolWindowPanel) {
+                if (content != null && content.getComponent() instanceof JScrollPane scrollPane) {
+                    if (scrollPane.getViewport().getView() instanceof ChatGptToolWindowPanel chatGptToolWindowPanel) {
                         chatGptToolWindowPanel.displayResponse(response);
                         toolWindow.show();
                     }

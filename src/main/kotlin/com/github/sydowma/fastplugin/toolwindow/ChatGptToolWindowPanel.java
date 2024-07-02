@@ -5,19 +5,18 @@ import java.awt.*;
 
 public class ChatGptToolWindowPanel extends JPanel {
     private JTextArea textArea;
-    private JPanel mainPanel;
 
     public ChatGptToolWindowPanel() {
+        setLayout(new BorderLayout());
         textArea = new JTextArea();
-        mainPanel = new JPanel(new BorderLayout());
-        mainPanel.add(new JScrollPane(textArea), BorderLayout.CENTER);
-    }
-
-    public JPanel getMainPanel() {
-        return mainPanel;
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
     }
 
     public void displayResponse(String response) {
         textArea.setText(response);
+    }
+
+    public JPanel getMainPanel() {
+        return this;
     }
 }

@@ -27,17 +27,22 @@ public class SettingsComponent {
         return mainPanel;
     }
 
-    public boolean isModified() {
-        // Implement logic to check if settings are modified
-        return true;
+    public boolean isModified(SettingsState settings) {
+        return !apiKeyField.getText().equals(settings.apiKey)
+                || !promptField.getText().equals(settings.prompt)
+                || !defaultPromptComboBox.getSelectedItem().equals(settings.defaultPrompt);
     }
 
-    public void apply() {
-        // Implement logic to save settings
+    public void apply(SettingsState settings) {
+        settings.apiKey = apiKeyField.getText();
+        settings.prompt = promptField.getText();
+        settings.defaultPrompt = (String) defaultPromptComboBox.getSelectedItem();
     }
 
-    public void reset() {
-        // Implement logic to reset settings
+    public void reset(SettingsState settings) {
+        apiKeyField.setText(settings.apiKey);
+        promptField.setText(settings.prompt);
+        defaultPromptComboBox.setSelectedItem(settings.defaultPrompt);
     }
 }
 
