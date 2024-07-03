@@ -51,8 +51,8 @@ class ChatGptToolWindowPanel(private val project: Project) : JPanel() {
         }
     }
 
-    fun displayResponse(response: String?) {
-        textArea.append(response + "\n")
+    private fun displayResponse(response: String?) {
+        textArea.append(response)
     }
 
     fun sendMessage(message: String) {
@@ -66,14 +66,9 @@ class ChatGptToolWindowPanel(private val project: Project) : JPanel() {
 
         val openAIService = OpenAIService(apiKey)
         ApplicationManager.getApplication().executeOnPooledThread {
-            try {
-                val response = openAIService.callOpenAI(message)
+            openAIService.callOpenAI(message) { response ->
                 ApplicationManager.getApplication().invokeLater {
                     displayResponse(response)
-                }
-            } catch (ex: Exception) {
-                ApplicationManager.getApplication().invokeLater {
-                    displayResponse("Error calling OpenAI API: ${ex.message}")
                 }
             }
         }
