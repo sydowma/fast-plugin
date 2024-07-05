@@ -15,5 +15,6 @@ public class DefaultStreamListener extends AbstractStreamListener {
     @Override
     public void onError(Throwable throwable, String response) {
 
+        callback.invoke(throwable.getMessage() + "\n" + response);
     }
 }

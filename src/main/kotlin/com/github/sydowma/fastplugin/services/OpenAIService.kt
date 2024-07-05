@@ -3,12 +3,16 @@ package com.github.sydowma.fastplugin.services
 import com.github.sydowma.fastplugin.settings.SettingsState
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.ibm.icu.util.TimeUnit
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.sse.EventSource
 import okhttp3.sse.EventSources.createFactory
 import java.net.Proxy
+import java.time.Duration
+import java.time.temporal.ChronoUnit
+import java.time.temporal.TemporalUnit
 
 class OpenAIService(private val settingsState: SettingsState) {
     fun callOpenAI(userMessage: String?, callback: (String) -> Unit) {
@@ -17,7 +21,10 @@ class OpenAIService(private val settingsState: SettingsState) {
             val proxyType: Proxy.Type = Proxy.Type.valueOf(settingsState.proxyProtocol?.toUpperCase() ?: proxy.toString())
             proxy = Proxy(proxyType, java.net.InetSocketAddress(settingsState.proxyAddress, settingsState.proxyPort))
         }
-        val client = OkHttpClient().newBuilder().proxy(proxy).build()
+        val client = OkHttpClient().newBuilder().proxy(proxy).readTimeout(Duration.of(5, ChronoUnit.SECONDS))
+            .callTimeout(Duration.of(5, ChronoUnit.SECONDS))
+            .connectTimeout(Duration.of(5, ChronoUnit.SECONDS))
+            .build()
 
         val json = JsonObject().apply {
             addProperty("model", "gpt-4o")
