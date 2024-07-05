@@ -16,6 +16,14 @@ class SettingsState : PersistentStateComponent<SettingsState> {
     @JvmField
     var defaultPrompt: String? = ""
 
+    @JvmField
+    var proxyProtocol: String? = ""
+    @JvmField
+    var proxyAddress: String? = ""
+    @JvmField
+    var proxyPort = 0
+
+
     override fun getState(): SettingsState {
         return this
     }
@@ -24,6 +32,9 @@ class SettingsState : PersistentStateComponent<SettingsState> {
         this.apiKey = state.apiKey
         this.prompt = state.prompt
         this.defaultPrompt = state.defaultPrompt
+        this.proxyProtocol = state.proxyProtocol
+        this.proxyAddress = state.proxyAddress
+        this.proxyPort = state.proxyPort
     }
 
     companion object {

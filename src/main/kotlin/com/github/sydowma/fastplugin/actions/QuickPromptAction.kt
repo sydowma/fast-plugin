@@ -1,6 +1,5 @@
 package com.github.sydowma.fastplugin.actions
 
-import com.github.sydowma.fastplugin.services.OpenAIService
 import com.github.sydowma.fastplugin.settings.SettingsState.Companion.instance
 import com.github.sydowma.fastplugin.toolwindow.ChatGptToolWindowPanel
 import com.intellij.openapi.actionSystem.AnAction

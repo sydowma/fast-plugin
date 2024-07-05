@@ -64,7 +64,7 @@ class ChatGptToolWindowPanel(private val project: Project) : JPanel() {
             return
         }
 
-        val openAIService = OpenAIService(apiKey)
+        val openAIService = OpenAIService(settings)
         ApplicationManager.getApplication().executeOnPooledThread {
             openAIService.callOpenAI(message) { response ->
                 ApplicationManager.getApplication().invokeLater {
