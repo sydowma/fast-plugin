@@ -9,6 +9,8 @@ import com.vladsch.flexmark.parser.Parser
 import java.awt.BorderLayout
 import java.awt.event.KeyAdapter
 import java.awt.event.KeyEvent
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import javax.swing.*
 
 class ChatGptToolWindowPanel(private val project: Project) : JPanel() {
@@ -16,6 +18,7 @@ class ChatGptToolWindowPanel(private val project: Project) : JPanel() {
     private val inputField: JTextField
     private val sendButton: JButton
     private val responseBuffer = StringBuilder()
+    private val cssStyle: String
 
     init {
         layout = BorderLayout()
@@ -49,6 +52,7 @@ class ChatGptToolWindowPanel(private val project: Project) : JPanel() {
                 inputField.text = ""
             }
         }
+        cssStyle = loadCssFromResources("/markdown.css")
     }
 
     private fun displayResponse(response: String?) {
@@ -62,6 +66,13 @@ class ChatGptToolWindowPanel(private val project: Project) : JPanel() {
         }
     }
 
+    private fun loadCssFromResources(path: String): String {
+        val inputStream = javaClass.getResourceAsStream(path)
+            ?: throw IllegalArgumentException("Resource not found: $path")
+        val reader = BufferedReader(InputStreamReader(inputStream))
+        return reader.readText()
+    }
+
     private fun finalizeDisplay() {
         if (responseBuffer.isNotEmpty()) {
             val html = convertMarkdownToHtml(responseBuffer.toString())
@@ -70,11 +81,23 @@ class ChatGptToolWindowPanel(private val project: Project) : JPanel() {
         }
     }
 
+
     private fun convertMarkdownToHtml(markdown: String): String {
         val parser = Parser.builder().build()
         val document = parser.parse(markdown)
         val renderer = HtmlRenderer.builder().build()
-        return renderer.render(document)
+        val htmlContent = renderer.render(document)
+
+        return """
+            <html>
+            <head>
+                <style>
+                    $cssStyle
+                </style>
+            </head>
+            <body>$htmlContent</body>
+            </html>
+        """.trimIndent()
     }
 
     fun sendMessage(message: String) {

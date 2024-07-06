@@ -1,0 +1,35 @@
+body {
+    background-color: #1e1e1e;
+    color: #c0c0c0;
+    font-family: sans-serif;
+}
+
+code {
+    background-color: #2e2e2e;
+    color: #f8f8f2;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+pre {
+    background-color: #2e2e2e;
+    color: #f8f8f2;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+a {
+    color: #569cd6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #9cdcfe;
+}
+
+blockquote {
+    color: #d4d4d4;
+    border-left: 4px solid #6a9955;
+    padding-left: 10px;
+    margin-left: 0;
+}
