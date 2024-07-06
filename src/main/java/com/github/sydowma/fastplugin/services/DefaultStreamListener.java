@@ -1,20 +1,35 @@
 package com.github.sydowma.fastplugin.services;
 
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
+import kotlin.jvm.functions.Function2;
+import okhttp3.sse.EventSource;
 import org.jetbrains.annotations.NotNull;
 
 public class DefaultStreamListener extends AbstractStreamListener {
-    public Function1<String, Unit> callback;
+    public Function2<String, Boolean, Unit> callback;
+
+    public void setCallback(Function2<String, Boolean, Unit> callback) {
+        this.callback = callback;
+    }
 
     @Override
     public void onMsg(String message) {
-        callback.invoke(message);
+        if (callback != null) {
+            callback.invoke(message, false);
+        }
     }
 
     @Override
     public void onError(Throwable throwable, String response) {
+        if (callback != null) {
+            callback.invoke(throwable.getMessage() + "\n" + response, true);
+        }
+    }
 
-        callback.invoke(throwable.getMessage() + "\n" + response);
+    @Override
+    public void onClosed(EventSource eventSource) {
+        if (callback != null) {
+            callback.invoke("", true);
+        }
     }
 }

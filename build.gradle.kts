@@ -33,6 +33,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.2")
     implementation("com.google.code.gson:gson:2.8.9")
     implementation("com.squareup.okhttp3:okhttp-sse:4.9.2")
+    implementation("com.vladsch.flexmark:flexmark-all:0.62.2")
 
     intellijPlatform {
         create(IntelliJPlatformType.IntellijIdeaCommunity, properties("platformVersion"))

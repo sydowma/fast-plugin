@@ -16,7 +16,7 @@ import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalUnit
 
 class OpenAIService(private val settingsState: SettingsState) {
-    fun callOpenAI(userMessage: String?, callback: (String) -> Unit) {
+    fun callOpenAI(userMessage: String?, callback: (String, Boolean) -> Unit) {
         var proxy = Proxy.NO_PROXY
         if (settingsState.proxyAddress?.isNotEmpty() == true ) {
             val proxyType: Proxy.Type = Proxy.Type.valueOf(settingsState.proxyProtocol?.toUpperCase() ?: proxy.toString())
@@ -55,12 +55,16 @@ class OpenAIService(private val settingsState: SettingsState) {
                 .build()
 
             val factory: EventSource.Factory = createFactory(client)
-            val streamListener: DefaultStreamListener = DefaultStreamListener()
-            factory.newEventSource(request, streamListener)
 
-            callback.apply { streamListener.callback = this }
+            val streamListener = DefaultStreamListener().apply {
+                setCallback { message, isFinal ->
+                    callback(message, isFinal)
+                    Unit
+                }
+            }
+            factory.newEventSource(request, streamListener)
         } catch (e: Exception) {
-            e.message?.let { callback(it) }
+            e.message?.let { callback(it, true) }
         }
 
 
