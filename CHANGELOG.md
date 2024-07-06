@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# fast-plugin Changelog
+# fast-gpt Changelog
 
 ## [Unreleased]
 ### Added
