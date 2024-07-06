@@ -1,6 +1,7 @@
 package com.github.sydowma.fastplugin.services
 
 import com.github.sydowma.fastplugin.settings.SettingsState
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.ibm.icu.util.TimeUnit
@@ -26,30 +27,42 @@ class OpenAIService(private val settingsState: SettingsState) {
             .connectTimeout(Duration.of(5, ChronoUnit.SECONDS))
             .build()
 
-        val json = JsonObject().apply {
-            addProperty("model", "gpt-4o")
-            addProperty("stream", true)
-            add("messages", JsonParser.parseString("""
-                [
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": "$userMessage"}
-                ]
-            """).asJsonArray)
+        try {
+
+            val messagesArray = JsonArray().apply {
+                add(JsonObject().apply {
+                    addProperty("role", "system")
+                    addProperty("content", "You are a helpful assistant.")
+                })
+                add(JsonObject().apply {
+                    addProperty("role", "user")
+                    addProperty("content", userMessage)
+                })
+            }
+
+            val json = JsonObject().apply {
+                addProperty("model", "gpt-4o")
+                addProperty("stream", true)
+                add("messages", messagesArray)
+            }
+
+            val body: RequestBody = json.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
+
+            val request: Request = Request.Builder()
+                .url(API_URL)
+                .header("Authorization", "Bearer ${settingsState.apiKey}")
+                .post(body)
+                .build()
+
+            val factory: EventSource.Factory = createFactory(client)
+            val streamListener: DefaultStreamListener = DefaultStreamListener()
+            factory.newEventSource(request, streamListener)
+
+            callback.apply { streamListener.callback = this }
+        } catch (e: Exception) {
+            e.message?.let { callback(it) }
         }
 
-        val body: RequestBody = json.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
-
-        val request: Request = Request.Builder()
-            .url(API_URL)
-            .header("Authorization", "Bearer ${settingsState.apiKey}")
-            .post(body)
-            .build()
-
-        val factory: EventSource.Factory = createFactory(client)
-        val streamListener: DefaultStreamListener = DefaultStreamListener()
-        factory.newEventSource(request, streamListener)
-
-        callback.apply { streamListener.callback = this }
 
     }
 
