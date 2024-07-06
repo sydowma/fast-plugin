@@ -30,9 +30,9 @@ repositories {
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
 //    implementation(libs.exampleLibrary)
-    implementation("com.squareup.okhttp3:okhttp:4.9.2")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.google.code.gson:gson:2.8.9")
-    implementation("com.squareup.okhttp3:okhttp-sse:4.9.2")
+    implementation("com.squareup.okhttp3:okhttp-sse:4.12.0")
     implementation("com.vladsch.flexmark:flexmark-all:0.62.2")
 
     intellijPlatform {
