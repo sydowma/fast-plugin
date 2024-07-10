@@ -6,7 +6,7 @@ import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 
-@State(name = "com.github.sydowma.fastplugin.settings.SettingsState", storages = [Storage("QuickPromptSettings.xml")])
+@State(name = "com.github.sydowma.fast.development.settings.SettingsState", storages = [Storage("QuickPromptSettings.xml")])
 @Service
 class SettingsState : PersistentStateComponent<SettingsState> {
     @JvmField

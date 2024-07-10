@@ -1,6 +1,6 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.sydowma.fastplugin</id>
+    <id>com.github.sydowma.fast.development</id>
     <name>Fast-Development</name>
     <vendor>sydowma</vendor>
 
@@ -18,7 +18,7 @@
         <state instance="com.github.sydowma.fast.development.settings.SettingsState" name="com.github.sydowma.fast.development.settings.SettingsState" storages="QuickPromptSettings.xml"/>
 
         <projectConfigurable instance="com.github.sydowma.fast.development.settings.SettingsConfigurable"
-                             id="com.github.sydowma.fastplugin.settings"
+                             id="com.github.sydowma.fast.development.settings"
                              displayName="Quick Prompt Settings"
                              groupId="tools"/>
         <toolWindow id="ChatGPT"
