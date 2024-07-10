@@ -1,10 +1,8 @@
-package com.github.sydowma.fastplugin.services
+package com.github.sydowma.fast.development.services
 
-import com.github.sydowma.fastplugin.settings.SettingsState
+import com.github.sydowma.fast.development.settings.SettingsState
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import com.ibm.icu.util.TimeUnit
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -13,7 +11,6 @@ import okhttp3.sse.EventSources.createFactory
 import java.net.Proxy
 import java.time.Duration
 import java.time.temporal.ChronoUnit
-import java.time.temporal.TemporalUnit
 
 class OpenAIService(private val settingsState: SettingsState) {
     fun callOpenAI(userMessage: String?, callback: (String, Boolean) -> Unit) {

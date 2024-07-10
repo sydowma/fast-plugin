@@ -1,4 +1,4 @@
-package com.github.sydowma.fastplugin.listeners
+package com.github.sydowma.fast.development.listeners
 
 import com.intellij.openapi.application.ApplicationActivationListener
 import com.intellij.openapi.diagnostic.thisLogger

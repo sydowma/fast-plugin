@@ -1,4 +1,4 @@
-package com.github.sydowma.fastplugin
+package com.github.sydowma.fast.development
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

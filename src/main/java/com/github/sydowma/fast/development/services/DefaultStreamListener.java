@@ -1,9 +1,8 @@
-package com.github.sydowma.fastplugin.services;
+package com.github.sydowma.fast.development.services;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 import okhttp3.sse.EventSource;
-import org.jetbrains.annotations.NotNull;
 
 public class DefaultStreamListener extends AbstractStreamListener {
     public Function2<String, Boolean, Unit> callback;

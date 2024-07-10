@@ -15,20 +15,20 @@
     <extensions defaultExtensionNs="com.intellij">
 
         <!-- Register the settings service -->
-        <state instance="com.github.sydowma.fastplugin.settings.SettingsState" name="com.github.sydowma.fastplugin.settings.SettingsState" storages="QuickPromptSettings.xml"/>
+        <state instance="com.github.sydowma.fast.development.settings.SettingsState" name="com.github.sydowma.fast.development.settings.SettingsState" storages="QuickPromptSettings.xml"/>
 
-        <projectConfigurable instance="com.github.sydowma.fastplugin.settings.SettingsConfigurable"
+        <projectConfigurable instance="com.github.sydowma.fast.development.settings.SettingsConfigurable"
                              id="com.github.sydowma.fastplugin.settings"
                              displayName="Quick Prompt Settings"
                              groupId="tools"/>
         <toolWindow id="ChatGPT"
                     anchor="right"
-                    factoryClass="com.github.sydowma.fastplugin.toolwindow.ChatGptToolWindow"/>
+                    factoryClass="com.github.sydowma.fast.development.toolwindow.ChatGptToolWindow"/>
     </extensions>
 
     <actions>
-        <action id="com.github.sydowma.fastplugin.actions.QuickPromptAction"
-                class="com.github.sydowma.fastplugin.actions.QuickPromptAction"
+        <action id="com.github.sydowma.fast.development.actions.QuickPromptAction"
+                class="com.github.sydowma.fast.development.actions.QuickPromptAction"
                 text="Quick Prompt">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>

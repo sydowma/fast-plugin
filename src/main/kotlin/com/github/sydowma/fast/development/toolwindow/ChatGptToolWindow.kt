@@ -1,4 +1,4 @@
-package com.github.sydowma.fastplugin.toolwindow
+package com.github.sydowma.fast.development.toolwindow
 
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project

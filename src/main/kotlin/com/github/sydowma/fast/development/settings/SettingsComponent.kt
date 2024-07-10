@@ -1,4 +1,4 @@
-package com.github.sydowma.fastplugin.settings
+package com.github.sydowma.fast.development.settings
 
 import java.awt.BorderLayout
 import java.awt.GridBagConstraints

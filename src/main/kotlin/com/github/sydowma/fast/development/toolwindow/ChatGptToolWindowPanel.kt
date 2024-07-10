@@ -1,7 +1,7 @@
-package com.github.sydowma.fastplugin.toolwindow
+package com.github.sydowma.fast.development.toolwindow
 
-import com.github.sydowma.fastplugin.services.OpenAIService
-import com.github.sydowma.fastplugin.settings.SettingsState
+import com.github.sydowma.fast.development.services.OpenAIService
+import com.github.sydowma.fast.development.settings.SettingsState
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import com.vladsch.flexmark.html.HtmlRenderer

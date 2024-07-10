@@ -1,4 +1,4 @@
-package com.github.sydowma.fastplugin.services;
+package com.github.sydowma.fast.development.services;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

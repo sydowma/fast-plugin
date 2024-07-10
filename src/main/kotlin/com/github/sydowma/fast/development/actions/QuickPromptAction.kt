@@ -1,7 +1,7 @@
-package com.github.sydowma.fastplugin.actions
+package com.github.sydowma.fast.development.actions
 
-import com.github.sydowma.fastplugin.settings.SettingsState.Companion.instance
-import com.github.sydowma.fastplugin.toolwindow.ChatGptToolWindowPanel
+import com.github.sydowma.fast.development.settings.SettingsState.Companion.instance
+import com.github.sydowma.fast.development.toolwindow.ChatGptToolWindowPanel
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys

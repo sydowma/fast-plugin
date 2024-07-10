@@ -1,4 +1,4 @@
-package com.github.sydowma.fastplugin.settings
+package com.github.sydowma.fast.development.settings
 
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.options.ConfigurationException

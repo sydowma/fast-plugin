@@ -1,9 +1,9 @@
-package com.github.sydowma.fastplugin.services
+package com.github.sydowma.fast.development.services
 
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
-import com.github.sydowma.fastplugin.MyBundle
+import com.github.sydowma.fast.development.MyBundle
 
 @Service(Service.Level.PROJECT)
 class MyProjectService(project: Project) {
