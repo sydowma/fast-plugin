@@ -4,6 +4,10 @@
     <name>Fast-Development</name>
     <vendor>sydowma</vendor>
 
+    <description>
+        The primary goal of this plugin is to address the development efficiency issues faced by engineers. It aims to enhance the coding capabilities of developers, such as generating code, by leveraging the power of OpenAI.
+    </description>
+
     <depends>com.intellij.modules.platform</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
