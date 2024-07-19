@@ -1,5 +1,7 @@
 package com.github.sydowma.fast.development.settings
 
+import com.intellij.openapi.application.ApplicationManager
+import com.intellij.ui.components.JBPasswordField
 import java.awt.BorderLayout
 import java.awt.GridBagConstraints
 import java.awt.GridBagLayout
@@ -7,7 +9,7 @@ import javax.swing.*
 
 class SettingsComponent {
     val panel: JPanel = JPanel(BorderLayout())
-    private val apiKeyField = JTextField()
+    private val apiKeyField = JBPasswordField()
     private val promptField = JTextArea()
     private val defaultPromptComboBox = JComboBox<String>()
 
@@ -29,6 +31,7 @@ class SettingsComponent {
 
         constraints.gridx = 1
         apiSettingsPanel.add(apiKeyField, constraints)
+        apiKeyField.columns = 30
 
         constraints.gridx = 0
         constraints.gridy = 1
